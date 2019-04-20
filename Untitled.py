@@ -1,5 +1,5 @@
-right_motor = "56699099423971639337912"
-left_motor = "56690116315779879524089"
+right_motor = "56692477276697421313848"
+left_motor = "56699099423971639337912"
 top_motor = "56693567227486137575505"
 bottom_motor = "56697390661107800622028"
 
@@ -26,17 +26,16 @@ async def autonomous_actions():
     Robot.set_value(left_motor, "duty_cycle", 0)
 
 def teleop_setup():
-    print("Tele-operated mode has started!")
+    print("kek op mode ON")
 
 def teleop_main():
     
     joystick_x = Gamepad.get_value("joystick_left_x")
-    joystick_y = -1*Gamepad.get_value("joystick_left_y")
+    joystick_y = Gamepad.get_value("joystick_left_y")
     V = (100-abs(joystick_x)) * (joystick_y/100) + joystick_y
     W = (100-abs(joystick_y)) * (joystick_x/100) + joystick_x
     R = (V+W)/2
     L = (V-W)/2
-    print("thomas is a retard")
     
     if(abs(Gamepad.get_value("joystick_left_y")) > 0.1 or abs(Gamepad.get_value("joystick_left_x")) > 0.1):
         Robot.set_value(right_motor, "duty_cycle", R)
@@ -60,23 +59,4 @@ def teleop_main():
     else:
         Robot.set_value(top_motor, "duty_cycle", 0)
         Robot.set_value(bottom_motor, "duty_cycle", 0)
-
-    '''if abs(Gamepad.get_value("joystick_right_y")) > 0.1:
-        Robot.set_value(right_motor, "duty_cycle", Gamepad.get_value("joystick_right_y"))
-    else:
-        Robot.set_value(right_motor, "duty_cycle", 0)
-    if abs(Gamepad.get_value("joystick_left_y")) > 0.1:
-        Robot.set_value(left_motor, "duty_cycle", -1*Gamepad.get_value("joystick_left_y"))
-    else:
-        Robot.set_value(left_motor, "duty_cycle", 0)
-    if Gamepad.get.value("button_y") == 1:
-        Robot.set_value(top_motor, "duty_cycle", 1)
-        Robot.set_value(bottom_motor, "duty_cycle", 1)
-    elif Gamepad.get.value("button_a") == 1:
-        Robot.set_value(top_motor, "duty_cycle", -1)
-        Robot.set_value(bottom_motor, "duty_cycle", -1)
-    else:
-        Robot.set_value(top_motor, "duty_cycle", 0)
-        Robot.set_value(bottom_motor, "duty_cycle", 0)'''
-    
     
