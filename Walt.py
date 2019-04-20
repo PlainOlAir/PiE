@@ -1,7 +1,7 @@
 #Team 6
 #Middle College High School
 
-LF_motor = "56687019174689847830972"
+LF_motor = "56694845788497927700362"
 LB_motor = "56699099423971639337912"
 RF_motor = "56702640167271161404160"
 RB_motor = "56692477276697421313848"
@@ -25,6 +25,22 @@ def stop():
     Robot.set_value(RB_motor, "duty_cycle", 0)
     Robot.set_value(LF_motor, "duty_cycle", 0)
     Robot.set_value(LB_motor, "duty_cycle", 0)
+    
+def turn(direction):
+    
+    if direction = "L":
+        L = 0
+        R = 0
+    if direction = "R":
+        L = 0
+        R = 0
+    
+    setleftmotor(L)
+    setrightmotor(R)
+    
+#def forward(distance):
+    
+    
     
 def autonomous_setup():
     print("Autonomous mode has started!")
@@ -59,6 +75,9 @@ async def main_right():
 #async def alt_right():
 
 async def temp():
+    setleftmotor(-1)
+    setrightmotor(1)
+    await Actions.sleep(1)
     setleftmotor(1)
     setrightmotor(-1)
     setliftmotor(0.3)
@@ -95,15 +114,15 @@ def teleop_main():
         setleftmotor(-1*L)
     else:
         stop()
-
-    if(abs(Gamepad.get_value("joystick_right_y")) > 0.1 and Gamepad.get_value("r_trigger") == 1):
-        setliftmotor(-1*Gamepad.get_value("joystick_right_y")*0.7)
-    elif(abs(Gamepad.get_value("joystick_right_y")) > 0.1 and Gamepad.get_value("l_trigger") == 1):
-        setliftmotor(-1*Gamepad.get_value("joystick_right_y")*0.2)
-    elif(abs(Gamepad.get_value("joystick_right_y")) > 0.1 and Gamepad.get_value("l_bumper") == 1):
-        setliftmotor(-1*Gamepad.get_value("joystick_right_y"))
-    elif(abs(Gamepad.get_value("joystick_right_y")) > 0.1):
-        setliftmotor(-1*Gamepad.get_value("joystick_right_y")*0.3)
+    if(abs(Gamepad.get_value("joystick_right_y")) > 0.1)
+        if(Gamepad.get_value("r_trigger") == 1):
+            setliftmotor(-1*Gamepad.get_value("joystick_right_y")*0.2)
+        elif(Gamepad.get_value("l_trigger") == 1):
+            setliftmotor(-1*Gamepad.get_value("joystick_right_y")*0.7)
+        elif(Gamepad.get_value("l_bumper") == 1):
+            setliftmotor(-1*Gamepad.get_value("joystick_right_y"))
+        else:
+            setliftmotor(-1*Gamepad.get_value("joystick_right_y")*0.3)
     else:
-        setliftmotor(1)
+        setliftmotor(0)
     
