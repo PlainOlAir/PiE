@@ -92,7 +92,6 @@ def teleop_setup():
     print("yes its running")
 
 def teleop_main():
-        
     joystick_x = Gamepad.get_value("joystick_left_x")
     joystick_y = Gamepad.get_value("joystick_left_y")
     V = (100-abs(joystick_x)) * (joystick_y/100) + joystick_y
@@ -114,6 +113,7 @@ def teleop_main():
         setleftmotor(-1*L)
     else:
         stop()
+    
     if(abs(Gamepad.get_value("joystick_right_y")) > 0.1)
         if(Gamepad.get_value("r_trigger") == 1):
             setliftmotor(-1*Gamepad.get_value("joystick_right_y")*0.2)
